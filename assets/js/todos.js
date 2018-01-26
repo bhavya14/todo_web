@@ -17,13 +17,23 @@
 
 // });
 
-$("li").click(function(){
+$("ul").on("click","li",function(){
 	$(this).toggleClass("completed");
 });
 
-$("span").click(function(e){
+$("ul").on("click","span",function(e){
 	$(this).parent().fadeOut(500,function(){
 		$(this).remove();
 	});
 	e.stopPropagation(); // to stop the listeners of parent tags to function i.e. to stop bubbling
+});
+
+$("input[type='text'").on("keypress",function(event){
+
+	if(event.which === 13){
+		var text =  $(this).val();
+		$(this).val("");
+		$("ul").append("<li><span>X</span>" + text + "</li>");
+	}
+
 });
